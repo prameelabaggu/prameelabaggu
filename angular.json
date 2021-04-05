@@ -87,6 +87,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/ngx-toaster/toaster.css",
               "src/styles.css"
             ],
             "scripts": []

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../user.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserService } from '../user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private us:UserService,private rt:Router) { }
+  constructor(private us:UserService,private rt:Router,private toastr:ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -20,20 +21,24 @@ export class RegisterComponent implements OnInit {
       res=>{
         if(res["message"] == "success")
         {
-          alert("Registration successfull");
+          //alert("Registration successfull");
+          this.toastr.success("registration successful","register"),
           this.rt.navigateByUrl("/login");
+          
           
         }
         else
         {
-          alert(res["message"]);
+          //alert(res["message"]);
+          this.toastr.error("error","title");
         }
         
         
       },
       err => {
         console.log(err);
-        alert("Something went Wrong...Try again...");
+        this.toastr.error("something went wrong...Try again...","title");
+        //alert("Something went Wrong...Try again...");
       }
 
     )
